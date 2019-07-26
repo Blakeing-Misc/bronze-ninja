@@ -95,7 +95,7 @@ export default function Contact() {
 				<form
 					name="file-upload"
 					method="post"
-					action="/thanks/"
+					action="/contact/thanks/"
 					data-netlify="true"
 					data-netlify-honeypot="bot-field"
 					onSubmit={handleSubmit}
@@ -118,17 +118,19 @@ export default function Contact() {
 								variant="outlined"
 								onChange={handleChange}
 								type="text"
+								htmlFor={"company"}
 							/>
 						</Grid>
 						<Grid item xs={12}>
 							<TextField
-								id="address1"
-								name="address1"
+								id="url"
+								name="url"
 								label="What will be the URL of the website?"
 								fullWidth
 								variant="outlined"
 								onChange={handleChange}
 								type="text"
+								htmlFor={"url"}
 							/>
 						</Grid>
 						<Grid item xs={12}>
@@ -142,6 +144,7 @@ export default function Contact() {
 								rowsMax="10"
 								onChange={handleChange}
 								type="text"
+								htmlFor={"purpose"}
 							/>
 						</Grid>
 						<Grid item xs={12}>
