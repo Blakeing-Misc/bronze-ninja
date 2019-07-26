@@ -5,6 +5,10 @@ import Button from "@material-ui/core/Button";
 import { Typography } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 import { Divider } from "@material-ui/core";
 
@@ -108,28 +112,23 @@ export default function Contact() {
 							<input name="bot-field" onChange={handleChange} />
 						</label>
 					</p>
+
 					<Grid container spacing={3}>
 						<Grid item xs={12} sm={6}>
-							<TextField
-								id="company"
-								name="company"
-								label="What is the name of your company?"
-								fullWidth
-								variant="outlined"
-								onChange={handleChange}
-								type="text"
-								htmlFor={"company"}
-							/>
+							<FormControl>
+								<InputLabel htmlFor="company">Company</InputLabel>
+								<Input id="company" />
+							</FormControl>
 						</Grid>
 						<Grid item xs={12}>
 							<TextField
-								id="url"
-								name="url"
+								id={"url"}
+								name={"url"}
 								label="What will be the URL of the website?"
 								fullWidth
 								variant="outlined"
 								onChange={handleChange}
-								type="text"
+								type={"text"}
 								htmlFor={"url"}
 							/>
 						</Grid>
@@ -143,7 +142,7 @@ export default function Contact() {
 								multiline
 								rowsMax="10"
 								onChange={handleChange}
-								type="text"
+								type={"text"}
 								htmlFor={"purpose"}
 							/>
 						</Grid>
