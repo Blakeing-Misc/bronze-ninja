@@ -1,6 +1,51 @@
 import React from "react";
 import { navigate } from "gatsby-link";
 import Layout from "../../components/Layout";
+import Button from "@material-ui/core/Button";
+import { Typography } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+
+import { Divider } from "@material-ui/core";
+
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(theme => ({
+	appBar: {
+		position: "relative"
+	},
+	layout: {
+		width: "auto",
+		marginLeft: theme.spacing(2),
+		marginRight: theme.spacing(2),
+		[theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+			width: 600,
+			marginLeft: "auto",
+			marginRight: "auto"
+		}
+	},
+	paper: {
+		marginTop: theme.spacing(3),
+		marginBottom: theme.spacing(3),
+		padding: theme.spacing(2),
+		[theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+			marginTop: theme.spacing(6),
+			marginBottom: theme.spacing(6),
+			padding: theme.spacing(3)
+		}
+	},
+	stepper: {
+		padding: theme.spacing(3, 0, 5)
+	},
+	buttons: {
+		display: "flex",
+		justifyContent: "flex-end"
+	},
+	button: {
+		marginTop: theme.spacing(3),
+		marginLeft: theme.spacing(1)
+	}
+}));
 
 function encode(data) {
 	const formData = new FormData();
@@ -13,6 +58,8 @@ function encode(data) {
 }
 
 export default function Contact() {
+	const classes = useStyles();
+
 	const [state, setState] = React.useState({});
 
 	const handleChange = e => {
@@ -39,44 +86,82 @@ export default function Contact() {
 
 	return (
 		<Layout>
-			<h1>File Upload</h1>
-			<form
-				name="file-upload"
-				method="post"
-				action="/thanks/"
-				data-netlify="true"
-				data-netlify-honeypot="bot-field"
-				onSubmit={handleSubmit}
-			>
-				{/* The `form-name` hidden field is required to support form submissions without JavaScript */}
-				<input type="hidden" name="form-name" value="file-upload" />
-				<p hidden>
-					<label>
-						Don’t fill this out:{" "}
-						<input name="bot-field" onChange={handleChange} />
-					</label>
-				</p>
-				<p>
-					<label>
-						Your name:
-						<br />
-						<input type="text" name="name" onChange={handleChange} />
-					</label>
-				</p>
-				<p>
-					<label>
-						File:
-						<br />
-						<input type="file" name="attachment" onChange={handleAttachment} />
-					</label>
-				</p>
-				<p>
-					<button type="submit">Send</button>
-				</p>
-				<p>
-					Note: multiple file uploads are not supported by Netlify at this time.
-				</p>
-			</form>
+			<main className={classes.layout}>
+				<Typography variant="h6" gutterBottom>
+					First, let us know a little about your company.
+				</Typography>
+				<Divider />
+				<br />
+				<form
+					name="file-upload"
+					method="post"
+					action="/thanks/"
+					data-netlify="true"
+					data-netlify-honeypot="bot-field"
+					onSubmit={handleSubmit}
+				>
+					{/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+					<input type="hidden" name="form-name" value="file-upload" />
+					<p hidden>
+						<label>
+							Don’t fill this out:{" "}
+							<input name="bot-field" onChange={handleChange} />
+						</label>
+					</p>
+					<Grid container spacing={3}>
+						<Grid item xs={12} sm={6}>
+							<TextField
+								id="company"
+								name="company"
+								label="What is the name of your company?"
+								fullWidth
+								variant="outlined"
+								onChange={handleChange}
+								type="text"
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								id="address1"
+								name="address1"
+								label="What will be the URL of the website?"
+								fullWidth
+								variant="outlined"
+								onChange={handleChange}
+								type="text"
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								id="purpose"
+								name="purpose"
+								label="What is the purpose of your site?"
+								fullWidth
+								variant="outlined"
+								multiline
+								rowsMax="10"
+								onChange={handleChange}
+								type="text"
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<label>
+								<Typography>File:</Typography>
+								<input
+									type="file"
+									name="attachment"
+									onChange={handleAttachment}
+								/>
+							</label>
+						</Grid>
+						<Grid item xs={12}>
+							<Button variant="contained" type="submit">
+								Send
+							</Button>
+						</Grid>
+					</Grid>
+				</form>
+			</main>
 		</Layout>
 	);
 }
