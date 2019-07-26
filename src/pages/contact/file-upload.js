@@ -117,7 +117,7 @@ export default function Contact() {
 						<Grid item xs={12} sm={6}>
 							<FormControl>
 								<InputLabel htmlFor="company">Company</InputLabel>
-								<Input id="company" />
+								<Input id="company" name="company" onChange={handleChange} />
 							</FormControl>
 						</Grid>
 						<Grid item xs={12}>
